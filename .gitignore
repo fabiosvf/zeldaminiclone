@@ -1,0 +1,15 @@
+# Java
+*.class
+*.log
+
+# Maven
+target/
+
+# Gradle
+build/
+.gradle/
+
+# IDEs
+.idea
+.vscode
+*.iml
