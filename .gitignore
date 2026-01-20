@@ -13,3 +13,6 @@ build/
 .idea
 .vscode
 *.iml
+
+# Folders
+bin/
