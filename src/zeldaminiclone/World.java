@@ -10,11 +10,11 @@ public class World {
 	public static List<Block> blocos = new ArrayList<Block>();
 	
 	public World() {
-		for(int xx = 0; xx < 15; xx++) {
+		for(int xx = 0; xx < 19; xx++) {
 			blocos.add(new Block(xx*32, 0));
 		}
 		
-		for(int xx = 0; xx < 15; xx++) {
+		for(int xx = 0; xx < 19; xx++) {
 			blocos.add(new Block(xx*32, 480-32));
 		}
 		
@@ -23,7 +23,7 @@ public class World {
 		}
 		
 		for(int yy = 0; yy < 15; yy++) {
-			blocos.add(new Block(480-32, yy*32));
+			blocos.add(new Block(640-32, yy*32));
 		}
 	}
 	
