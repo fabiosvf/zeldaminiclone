@@ -7,30 +7,32 @@ import java.util.List;
 
 public class World {
 	
-	public static List<Block> blocos = new ArrayList<Block>();
+	public static List<Block> blocks = new ArrayList<Block>();
 	
 	public World() {
 		for(int xx = 0; xx < 19; xx++) {
-			blocos.add(new Block(xx*32, 0));
+			blocks.add(new Block(xx*32, 0));
 		}
 		
 		for(int xx = 0; xx < 19; xx++) {
-			blocos.add(new Block(xx*32, 480-32));
+			blocks.add(new Block(xx*32, 480-32));
 		}
 		
 		for(int yy = 0; yy < 15; yy++) {
-			blocos.add(new Block(0, yy*32));
+			blocks.add(new Block(0, yy*32));
 		}
 		
 		for(int yy = 0; yy < 15; yy++) {
-			blocos.add(new Block(640-32, yy*32));
+			blocks.add(new Block(640-32, yy*32));
 		}
+		
+		blocks.add(new Block(220, 100));
 	}
 	
 	public static boolean isFree(int x, int y) {
-		for (int i = 0; i < blocos.size(); i++) {
-			Block blocoAtual = blocos.get(i);
-			if (blocoAtual.intersects(new Rectangle(x, y, 32, 32))) {
+		for (int i = 0; i < blocks.size(); i++) {
+			Block curBlock = blocks.get(i);
+			if (curBlock.intersects(new Rectangle(x, y, 32, 32))) {
 				return false;
 			}
 		}
@@ -38,8 +40,8 @@ public class World {
 	}
 	
 	public void render(Graphics g) {
-		for (int i = 0; i < blocos.size(); i++) {
-			blocos.get(i).render(g);
+		for (int i = 0; i < blocks.size(); i++) {
+			blocks.get(i).render(g);
 		}
 	}
 }
