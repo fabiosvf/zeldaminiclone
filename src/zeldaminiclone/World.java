@@ -7,41 +7,36 @@ import java.util.List;
 
 public class World {
 	
+	public static final int TILE_SIZE = 32;
 	public static List<Block> blocks = new ArrayList<Block>();
 	
 	public World() {
-		for(int xx = 0; xx < 19; xx++) {
-			blocks.add(new Block(xx*32, 0));
+		int tilesX = Game.WIDTH / TILE_SIZE;
+		int tilesY = Game.HEIGHT / TILE_SIZE;
+		
+		for(int xx = 0; xx < tilesX; xx++) {
+			blocks.add(new Block(xx * TILE_SIZE, 0));
+			blocks.add(new Block(xx * TILE_SIZE, Game.HEIGHT - TILE_SIZE));
 		}
 		
-		for(int xx = 0; xx < 19; xx++) {
-			blocks.add(new Block(xx*32, 480-32));
-		}
-		
-		for(int yy = 0; yy < 15; yy++) {
-			blocks.add(new Block(0, yy*32));
-		}
-		
-		for(int yy = 0; yy < 15; yy++) {
-			blocks.add(new Block(640-32, yy*32));
+		for(int yy = 0; yy < tilesY; yy++) {
+			blocks.add(new Block(0, yy * TILE_SIZE));
+			blocks.add(new Block(Game.WIDTH - TILE_SIZE, yy * TILE_SIZE));
 		}
 		
 		blocks.add(new Block(220, 100));
 	}
 	
 	public static boolean isFree(int x, int y) {
-		for (int i = 0; i < blocks.size(); i++) {
-			Block curBlock = blocks.get(i);
-			if (curBlock.intersects(new Rectangle(x, y, 32, 32))) {
-				return false;
-			}
+		Rectangle playerBox = new Rectangle(x, y, TILE_SIZE, TILE_SIZE);
+		
+		for (Block block : blocks) {
+			if (block.intersects(playerBox)) return false;
 		}
 		return true;
 	}
 	
 	public void render(Graphics g) {
-		for (int i = 0; i < blocks.size(); i++) {
-			blocks.get(i).render(g);
-		}
+		for (Block block : blocks) block.render(g);
 	}
 }

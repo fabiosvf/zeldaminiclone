@@ -56,16 +56,12 @@ public class Player extends Rectangle {
 			bullets.add(new Bullet(x, y, dir));
 		}
 		
-		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).tick();
-		}
+		for (Bullet bullet : bullets) bullet.tick();
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(Spritesheet.playersFront[curAnimation], x, y, 32, 32, null);
+		g.drawImage(Spritesheet.playersFront[curAnimation], x, y, width, height, null);
 		
-		for (int i = 0; i < bullets.size(); i++) {
-			bullets.get(i).render(g);
-		}
+		for (Bullet bullet : bullets) bullet.render(g);
 	}
 }

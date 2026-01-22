@@ -20,8 +20,8 @@ public class Spritesheet {
 		}
 		
 		playersFront = new BufferedImage[2];
-		playersFront[0] = Spritesheet.getSprite(0, 11, 16, 16);
-		playersFront[1] = Spritesheet.getSprite(16, 11, 16, 16);
+		playersFront[0] = Spritesheet.getSprite(1, 11, 16, 16);
+		playersFront[1] = Spritesheet.getSprite(17, 11, 16, 16);
 		
 		enemiesFront = new BufferedImage[2];
 		enemiesFront[0] = Spritesheet.getSprite(298, 221, 16, 16);
