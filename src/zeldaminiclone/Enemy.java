@@ -17,9 +17,11 @@ public class Enemy extends Rectangle {
 	public static List<Bullet> bullets = new ArrayList<Bullet>();
 	public boolean shoot = false;
 	public int dir = 1;
+	public boolean atacar = true;
 	
-	public Enemy(int x, int y) {
+	public Enemy(int x, int y, boolean atacar) {
 		super(x,y,32,32);
+		this.atacar = atacar;
 	}
 	
 	public void chasePlayer() {
@@ -46,7 +48,7 @@ public class Enemy extends Rectangle {
 	public void tick() {
 		boolean moved = true;
 		
-		chasePlayer();
+		if (this.atacar) chasePlayer();
 
 		if (moved) {
 			curFrames++;

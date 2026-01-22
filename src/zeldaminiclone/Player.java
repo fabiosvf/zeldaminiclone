@@ -58,7 +58,6 @@ public class Player extends Rectangle {
 			bullets.add(new Bullet(x, y, dir));
 		}
 		
-		//for (Bullet bullet : bullets) bullet.tick();
 		for (int i = bullets.size() - 1; i >= 0; i--) {
 			Bullet b = bullets.get(i);
 			b.tick();

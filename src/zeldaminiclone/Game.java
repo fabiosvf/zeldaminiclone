@@ -39,7 +39,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		new Spritesheet();
 		player = new Player(32,32);
 		
-		enemies.add(new Enemy(32,64));
+		enemies.add(new Enemy(32, 64, true));
+		enemies.add(new Enemy(80, 230, false));
 		world = new World();
 		
 		this.addComponentListener(new ComponentAdapter() {
