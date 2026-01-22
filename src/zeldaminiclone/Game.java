@@ -133,19 +133,22 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	
 	@Override
 	public void run() {
-		final int fps = 60;
-		final long frameTime = 1000 / fps;
+		final double nsPerTick = 1_000_000_000.0 / 60.0;
+		long last = System.nanoTime();
+		double delta = 0;
 		
 		while (true) {
-			tick();
-			render();
+			long now = System.nanoTime();
+			delta += (now - last) / nsPerTick;
+			last = now;
 			
-			try {
-				Thread.sleep(frameTime);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-				break;
+			while (delta >= 1) {
+				tick();
+				delta -= 1;
 			}
+			
+			render();
+			try { Thread.sleep(1); } catch (InterruptedException e) { return; }
 		}
 	}
 
