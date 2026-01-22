@@ -10,6 +10,7 @@ public class Bullet extends Rectangle {
 	public int speed = 8;
 	
 	public int frames = 0;
+	public boolean alive = true;
 	
 	public Bullet(int x, int y, int dir) {
 		super(x+16, y+16, 10, 10);
@@ -19,8 +20,8 @@ public class Bullet extends Rectangle {
 	public void tick() {
 		x+= speed * dir;
 		frames++;
-		if (frames == 60) {
-			Player.bullets.remove(this);
+		if (frames >= 60) {
+			alive = false;
 			return;
 		}
 	}

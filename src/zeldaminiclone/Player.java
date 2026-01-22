@@ -20,8 +20,10 @@ public class Player extends Rectangle {
 	public Player(int x, int y) {
 		super(x,y,32,32);
 	}
+	
 	public void tick() {
 		boolean moved = false;
+		
 		if (right && World.isFree(x + spd, y)) {
 			x+=spd;
 			moved = true;
@@ -56,7 +58,12 @@ public class Player extends Rectangle {
 			bullets.add(new Bullet(x, y, dir));
 		}
 		
-		for (Bullet bullet : bullets) bullet.tick();
+		//for (Bullet bullet : bullets) bullet.tick();
+		for (int i = bullets.size() - 1; i >= 0; i--) {
+			Bullet b = bullets.get(i);
+			b.tick();
+			if (!b.alive) bullets.remove(i);
+		}
 	}
 	
 	public void render(Graphics g) {
